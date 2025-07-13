@@ -33,26 +33,10 @@ while True:
   finger_tips=[4,8,12,16,20]
   finger_status=[]
   if len(lms)!=0:
-    finger_status=[]
-    if lms[finger_tips[1]][1]>lms[finger_tips[2]][1]:#left in unmirror
-      if lms[finger_tips[0]][1]>lms[finger_tips[0]-1][1]:
-        finger_status.append(1)
-      else:
-        finger_status.append(0)
-    else:#right in unmirror
-      if lms[finger_tips[0]][1]<lms[finger_tips[0]-1][1]:
-        finger_status.append(1)
-      else:
-        finger_status.append(0)
-    for i in range(1,5):
-      if lms[finger_tips[i]][2]<lms[finger_tips[i]-2][2]:
-        finger_status.append(1)
-      else:
-        finger_status.append(0)
-  tot=finger_status.count(1)
-  cv2.rectangle(frame,(10, 10),(100, 70),(0, 0, 255),cv2.FILLED)
-  cv2.putText(frame,str(tot),(34, 60),cv2.FONT_HERSHEY_SIMPLEX,2,(255, 255, 255),4)
-  cv2.imshow("Finger Counter",frame)
+    if(lms[finger_tips[1]][0]<lms[finger_tips[1]-2][0]):
+        print('left')
+    else:
+        print('right')
   if cv2.waitKey(1) & 0xFF == ord('q'):
       break
 cp.release()
