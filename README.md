@@ -1,0 +1,1 @@
+# finger_detection_project_naveen
