@@ -1,5 +1,6 @@
 import cv2
 import mediapipe as mp
+import time
 mp_hands=mp.solutions.hands
 hands=mp_hands.Hands(static_image_mode=False,max_num_hands=2,min_detection_confidence=0.5,min_tracking_confidence=0.5)
 mp_draw=mp.solutions.drawing_utils
@@ -33,10 +34,14 @@ while True:
   finger_tips=[4,8,12,16,20]
   finger_status=[]
   if len(lms)!=0:
-    if(lms[finger_tips[1]][0]<lms[finger_tips[1]-2][0]):
+    if(lms[finger_tips[1]][1]<lms[finger_tips[1]-1][1]):
         print('left')
     else:
         print('right')
+  #tot=finger_status.count(1)
+  cv2.rectangle(frame,(10, 10),(100, 70),(0, 0, 255),cv2.FILLED)
+  #cv2.putText(frame,str(tot),(34, 60),cv2.FONT_HERSHEY_SIMPLEX,2,(255, 255, 255),4)
+  cv2.imshow("Finger Counter",frame)
   if cv2.waitKey(1) & 0xFF == ord('q'):
       break
 cp.release()
